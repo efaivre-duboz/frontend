@@ -1,24 +1,24 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+eslint-disable-next-line
+// Import par défaut pour react-router-dom
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// Ou essayez ceci si l'erreur persiste :
+// import Router from 'react-router-dom/BrowserRouter';
+// import Routes from 'react-router-dom/Routes';
+// import Route from 'react-router-dom/Route';
+
+import { CssBaseline } from '@mui/material';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <CssBaseline />
+      <div className="App">
+        <h1>ProdMaster Frontend</h1>
+        <p>Interface utilisateur en cours de développement...</p>
+      </div>
+    </Router>
   );
 }
 
