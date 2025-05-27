@@ -1,0 +1,83 @@
+import React, { useState } from 'react';
+import {
+    Container,
+    TextField,
+    Button,
+    Typography,
+    Box,
+    Paper,
+    Alert,
+} from '@mui/material';
+import axios from 'axios';
+
+function ProductionScan() {
+    const [productCode, setProductCode] = useState('');
+    const [batchNumber, setBatchNumber] = useState('');
+    const [loading, serLoading] = useState(false);
+    const [error, setError] = useState('');
+
+    const handleSubmit = async (e) => {
+        e.prevenDefault();
+        setLoading(true);
+        setError('');
+
+        try {
+            const response = await axios.get(
+                '${process.env.REACT_APP_API_URL}/api/product/code/${productCode}'
+            );
+
+            if (response.data.success) {
+                console.log('Produit trouvé:', response.data.data);
+            }
+        }   catch (err) {
+        setError=('Produit non trouvé ou erreur de connexion');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return(
+        <Container maxWidth="md">
+            <Box sx={{ mt: 4}}>
+                <Typography variant = "h4" align="center" gutterBottom>
+                    Scan de Production
+                </Typography>
+                <Paper sx={{P: 4, mt: 3}}>
+                    {error && <Alert severity='error' sx={{mb: 2}}>{error}</Alert>}
+
+                    <form onSubmit={handleSubmit}>
+                    <TextField
+                        fullWidth
+                        label='Code Pruduit'
+                        value={productCode}
+                        onChange={(e) => setProductCode(e.target.value)}
+                        margin='normal'
+                        required
+                    />
+                    <TextField
+                    fullWidth
+                    label='Numéro de Lot'
+                    value={batchNumber}
+                    onChange={(e) => setBatchNumber(e.target.value)}
+                    margin='normal'
+                    required
+                    />
+
+                    <Button
+                    type = 'submit'
+                    variant='contained'
+                    fullWidth
+                    size='large'
+                    disabled={loading}
+                    sx={{ mt: 3 }}
+                    >
+                        {loading ? 'Vérification...': 'Continuer'}
+                    </Button>
+                    </form>
+                </Paper>
+                </Box>
+        </Container>
+    );
+    }
+
+export default ProductionScan;
