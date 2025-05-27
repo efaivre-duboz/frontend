@@ -1,9 +1,8 @@
 import React from 'react';
 import './App.css';
-eslint-disable-next-line
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { CssBaseline } from '@mui/material';
-import ProductionScan from '../pages/ProductionScan';
+import ProductionScan from './pages/ProductionScan';
 
 function App() {
   return (
@@ -12,11 +11,8 @@ function App() {
       <Routes>
         <Route path='/' element={<ProductionScan />} />
       </Routes>
-      </Router>
+    </Router>
   );
-
 }
 
 export default App;
-
-      
