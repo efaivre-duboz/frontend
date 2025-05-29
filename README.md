@@ -1,70 +1,279 @@
-# Getting Started with Create React App
+# Production Management System - Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 📋 Description
 
-## Available Scripts
+Système de gestion de production industrielle développé en React avec Material-UI. Cette application permet le suivi complet des processus de production, du contrôle qualité et de la traçabilité des lots.
 
-In the project directory, you can run:
+## 🚀 Fonctionnalités Principales
 
-### `npm start`
+### 👥 Gestion des Utilisateurs
+- **Rôles** : Administrateur et Opérateur
+- **Authentification** sécurisée avec gestion de session
+- **Permissions** différenciées selon les rôles
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 🏭 Flux de Production
+1. **Scan de Production** - Démarrage d'un nouveau lot
+2. **Recette & Instructions** - Consultation des procédures
+3. **Saisie des Ingrédients** - Enregistrement des quantités utilisées
+4. **Contrôle Qualité** - Tests personnalisés par produit
+5. **Finalisation** - Validation et clôture du lot
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 📊 Gestion et Analyse
+- **Dashboard** en temps réel avec statistiques
+- **Gestion des Produits** avec tests qualité configurables
+- **Historique des Lots** avec traçabilité complète
+- **Rapports et Analyses** détaillés
 
-### `npm test`
+### 🔍 Contrôle Qualité
+- **Tests personnalisés** par produit :
+  - Tests numériques (pH, poids, température)
+  - Sélections (apparence, odeur, viscosité)
+  - Tests booléens (conforme/non conforme)
+- **Validation automatique** selon les critères définis
+- **Traçabilité complète** des résultats
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🛠️ Technologies Utilisées
 
-### `npm run build`
+- **React** 19.1.0 - Framework JavaScript
+- **Material-UI** 5.17.1 - Interface utilisateur
+- **React Router** 6.30.1 - Navigation
+- **Axios** 1.9.0 - Requêtes HTTP
+- **Date-fns** 2.30.0 - Manipulation des dates
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 📦 Installation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Prérequis
+- Node.js >= 16.0.0
+- npm >= 8.0.0
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Étapes d'installation
 
-### `npm run eject`
+1. **Cloner le projet**
+```bash
+git clone https://github.com/your-org/production-management-frontend.git
+cd production-management-frontend
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. **Installer les dépendances**
+```bash
+npm install
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. **Configuration de l'environnement**
+```bash
+# Copier le fichier d'environnement
+cp .env.example .env
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+# Modifier les variables selon votre configuration
+nano .env
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+4. **Démarrer l'application**
+```bash
+npm start
+```
 
-## Learn More
+L'application sera accessible sur `http://localhost:3000`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## ⚙️ Configuration
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Variables d'environnement
 
-### Code Splitting
+Créez un fichier `.env` à la racine du projet :
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```env
+# Configuration API
+REACT_APP_API_URL=http://localhost:5000
 
-### Analyzing the Bundle Size
+# Configuration de l'application
+REACT_APP_NAME="Production Management System"
+REACT_APP_VERSION="1.0.0"
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+# Configuration de débogage (development only)
+REACT_APP_DEBUG=true
+```
 
-### Making a Progressive Web App
+### Structure des dossiers
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```
+src/
+├── components/          # Composants réutilisables
+│   ├── Navigation.js    # Navigation principale
+│   ├── ProtectedRoute.js # Protection des routes
+│   └── LoadingScreen.js # Écran de chargement
+├── pages/              # Pages de l'application
+│   ├── Login.js        # Page de connexion
+│   ├── Dashboard.js    # Tableau de bord
+│   ├── ProductionScan.js # Scan de production
+│   ├── ProductionRecipe.js # Recettes
+│   ├── ProductionIngredients.js # Ingrédients
+│   ├── QualityControl.js # Contrôle qualité
+│   ├── ProductionComplete.js # Finalisation
+│   ├── ProductsManagement.js # Gestion produits
+│   ├── BatchesManagement.js # Gestion lots
+│   └── Reports.js      # Rapports
+├── config/             # Configuration
+│   └── appConfig.js    # Configuration globale
+├── utils/              # Utilitaires
+│   └── helpers.js      # Fonctions utilitaires
+├── App.js              # Composant principal
+└── index.js            # Point d'entrée
+```
 
-### Advanced Configuration
+## 👤 Comptes de Démonstration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Administrateur
+- **Nom d'utilisateur** : `admin`
+- **Mot de passe** : `admin`
+- **Accès** : Toutes les fonctionnalités
 
-### Deployment
+### Opérateur
+- **Nom d'utilisateur** : `operator`
+- **Mot de passe** : `operator`
+- **Accès** : Production et dashboard uniquement
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 🔧 Scripts Disponibles
 
-### `npm run build` fails to minify
+```bash
+# Démarrage en mode développement
+npm start
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Construction pour la production
+npm build
+
+# Tests unitaires
+npm test
+
+# Linting du code
+npm run lint
+npm run lint:fix
+
+# Formatage du code
+npm run format
+
+# Analyse du bundle
+npm run analyze
+```
+
+## 📱 Interface Utilisateur
+
+### Dashboard
+- **Statistiques** en temps réel
+- **Productions en cours** avec progression
+- **Lots récents** avec statuts
+- **Alertes qualité** et notifications
+
+### Flux de Production
+1. **Scan** - Code QR/manuel avec génération automatique du numéro de lot
+2. **Recette** - Instructions détaillées avec ingrédients et consignes
+3. **Ingrédients** - Saisie avec calcul automatique des écarts
+4. **Qualité** - Tests personnalisés avec validation
+5. **Finalisation** - Résumé complet et confirmation
+
+### Gestion (Admin)
+- **Produits** - CRUD complet avec tests qualité configurables
+- **Lots** - Historique avec traçabilité détaillée
+- **Rapports** - Analyses des temps et de la qualité
+
+## 🔒 Sécurité
+
+- **Authentification** par rôles
+- **Sessions** avec expiration automatique (8h)
+- **Routes protégées** selon les permissions
+- **Validation** côté client et serveur
+
+## 📊 Fonctionnalités Avancées
+
+### Contrôle Qualité Personnalisé
+- Configuration flexible des tests par produit
+- Types de tests variés (numérique, sélection, booléen)
+- Validation automatique avec seuils configurables
+- Traçabilité complète des résultats
+
+### Génération Automatique des Lots
+- Format configurable : `{PRODUIT}-{YYYYMMDD}-{SEQUENCE}`
+- Séquence automatique par jour et produit
+- Évitement des doublons
+
+### Rapports et Analyses
+- **Temps de production** par produit et opérateur
+- **Taux de conformité** avec tendances
+- **Performance des opérateurs**
+- **Analyse des problèmes** récurrents
+
+## 🔄 API Integration
+
+L'application communique avec une API REST. Les endpoints principaux :
+
+```
+GET    /api/products              # Liste des produits
+POST   /api/products              # Création d'un produit
+GET    /api/batches               # Liste des lots
+POST   /api/batches               # Création d'un lot
+GET    /api/dashboard/stats       # Statistiques du dashboard
+POST   /api/auth/login            # Authentification
+```
+
+## 🚧 Développement
+
+### Ajout d'une nouvelle page
+
+1. Créer le composant dans `src/pages/`
+2. Ajouter la route dans `App.js`
+3. Mettre à jour la navigation si nécessaire
+4. Ajouter les permissions si requises
+
+### Ajout d'un nouveau test qualité
+
+1. Ajouter le type dans `config/appConfig.js`
+2. Mettre à jour le formulaire dans `ProductsManagement.js`
+3. Implémenter la validation dans `QualityControl.js`
+
+## 🐛 Dépannage
+
+### Problèmes courants
+
+**Erreur de CORS**
+- Vérifier la configuration du serveur backend
+- S'assurer que l'URL de l'API est correcte dans `.env`
+
+**Session expirée**
+- Les sessions expirent après 8 heures
+- Se reconnecter pour renouveler la session
+
+**Tests qualité non visibles**
+- Vérifier que les tests sont bien configurés pour le produit
+- S'assurer que les types de tests sont supportés
+
+## 📈 Améliorations Futures
+
+- [ ] **Notifications push** en temps réel
+- [ ] **Mode hors ligne** pour les opérateurs
+- [ ] **Scan QR/Code-barres** avec caméra
+- [ ] **Export Excel** des rapports
+- [ ] **Graphiques** interactifs pour les analyses
+- [ ] **API GraphQL** pour optimiser les requêtes
+- [ ] **PWA** pour l'utilisation mobile
+
+## 🤝 Contribution
+
+1. Fork le projet
+2. Créer une branche feature (`git checkout -b feature/nouvelle-fonctionnalite`)
+3. Commit les changements (`git commit -am 'Ajout d'une nouvelle fonctionnalité'`)
+4. Push vers la branche (`git push origin feature/nouvelle-fonctionnalite`)
+5. Créer une Pull Request
+
+## 📄 Licence
+
+Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
+
+## 📞 Support
+
+Pour toute question ou problème :
+- **Issues** : [GitHub Issues](https://github.com/your-org/production-management-frontend/issues)
+- **Email** : support@production-management.com
+- **Documentation** : [Wiki du projet](https://github.com/your-org/production-management-frontend/wiki)
+
+---
+
+**Version** :
